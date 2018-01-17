@@ -1,0 +1,6 @@
+{
+  "resource": "/",
+  "path": "/",
+  "httpMethod": "POST",
+  "body": "{ \"name\":\"Dinesh updated\", \"username\": \"dinesh-kd\", \"email\":\"dinesh.kd@diversey.com\", \"password\": \"Dinesh@123\" }"
+}
