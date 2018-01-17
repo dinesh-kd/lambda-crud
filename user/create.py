@@ -5,9 +5,7 @@ import datetime
 
 def create(event, context):
     conn = mysql_connect.connect()
-    print(conn)
     param = json.loads(event['body'])
-    print(param)
     if validate_data(param):
         try:
             with conn.cursor() as cursor:
