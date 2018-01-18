@@ -1,14 +1,13 @@
 import json
 import mysql_connect
-import logging
 import datetime
 
 def create(event, context):
     conn = mysql_connect.connect()
-    param = json.loads(event['body'])
-    if validate_data(param):
+    if validate_data(event):
         try:
             with conn.cursor() as cursor:
+                param = json.loads(event['body'])
                 sql = "INSERT INTO `dinesh_users` (`name`,`username`,`email`,`password`,`created_on`) VALUES (%s,%s,%s,%s,%s);"
                 cursor.execute(sql, (
                 param['name'], param['username'], param['email'], param['password'],
@@ -37,8 +36,9 @@ def create(event, context):
     return response
 
 
-def validate_data(param):
+def validate_data(event):
     try:
+        param = json.loads(event['body'])
         if param['name'] and param['username'] and param['email'] and param['password']:
             return True
         else:
