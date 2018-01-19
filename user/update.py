@@ -1,18 +1,13 @@
 import json
 import mysql_connect
-import logging
 import datetime
-import hashlib
-
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
 
 def update(event, context):
-    conn = mysql_connect.connect()
-    param = json.loads(event['body'])
-    user_param = event['pathParameters']
-    if validate_data(param, user_param):
+    if validate_data(event):
         try:
+            conn = mysql_connect.connect()
+            param = json.loads(event['body'])
+            user_param = event['pathParameters']
             with conn.cursor() as cursor:
                 sql = "UPDATE `dinesh_users` set `name` = %s,`username` = %s,`email` = %s,`password` = %s,`updated_on` = %s where id = %s "
                 cursor.execute(sql, (
@@ -42,8 +37,10 @@ def update(event, context):
     return response
 
 
-def validate_data(param, user_param):
+def validate_data(event):
     try:
+        param = json.loads(event['body'])
+        user_param = event['pathParameters']
         if param['name'] and param['username'] and param['email'] and param['password'] and user_param['user_id']:
             return True
         else:

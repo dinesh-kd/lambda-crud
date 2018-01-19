@@ -1,19 +1,14 @@
 import json
 import mysql_connect
-import logging
-
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
 
 def delete(event, context):
-    conn = mysql_connect.connect()
-    param = event['pathParameters']
-    if validate_data(param):
+    if validate_data(event):
         try:
+            conn = mysql_connect.connect()
+            param = event['pathParameters']
             with conn.cursor() as cursor:
                 sql = "delete from `dinesh_users` where id = %s;"
                 cursor.execute(sql, param['user_id'])
-                result = cursor.fetchone()
                 conn.commit()
                 status_code = 200
                 body = {
@@ -38,8 +33,9 @@ def delete(event, context):
     return response
 
 
-def validate_data(param):
+def validate_data(event):
     try:
+        param = event['pathParameters']
         if param['user_id']:
             return True
         else:

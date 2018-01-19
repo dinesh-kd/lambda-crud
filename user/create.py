@@ -3,9 +3,9 @@ import mysql_connect
 import datetime
 
 def create(event, context):
-    conn = mysql_connect.connect()
     if validate_data(event):
         try:
+            conn = mysql_connect.connect()
             with conn.cursor() as cursor:
                 param = json.loads(event['body'])
                 sql = "INSERT INTO `dinesh_users` (`name`,`username`,`email`,`password`,`created_on`) VALUES (%s,%s,%s,%s,%s);"
