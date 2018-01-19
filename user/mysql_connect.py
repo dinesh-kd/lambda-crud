@@ -1,4 +1,4 @@
-import pymysql
+import peewee as pw
 import boto3
 client = boto3.client('ssm', region_name="us-east-1")
 
@@ -18,6 +18,8 @@ for param in resp['Parameters']:
 
 def connect():
     try:
-        return pymysql.connect(rds_host, user=name, passwd=password, db=db_name, connect_timeout=5)
+        return pw.MySQLDatabase(db_name, host=rds_host, port=3306, user=name, passwd=password)
     except:
         return 0
+
+connect()
