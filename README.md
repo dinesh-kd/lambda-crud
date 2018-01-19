@@ -1,4 +1,4 @@
-# Lamabda Crud
+# Lambda Crud
 
 ## endpoints:
   * POST - https://tvq543j6s0.execute-api.us-east-1.amazonaws.com/dev/users
