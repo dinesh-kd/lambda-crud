@@ -2,7 +2,5 @@
   "resource": "/",
   "path": "/",
   "httpMethod": "GET",
-  "pathParameters": {
-    "user_id": 10
-  }
+  "pathParameters": {}
 }
