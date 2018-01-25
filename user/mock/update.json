@@ -2,8 +2,8 @@
   "resource": "/",
   "path": "/",
   "httpMethod": "PUT",
-  "body": "{ \"name\":\"Dinesh update local\", \"username\": \"dinesh-kd\", \"email\":\"dinesh.kd@diversey.com\", \"password\": \"Dinesh@123\"}",
+  "body": "{ \"name\":\"Dinesh\", \"username\": \"dinesh-kd\", \"email\":\"dinesh.kd@diversey.com\", \"password\": \"Dinesh@123\"}",
   "pathParameters": {
-    "user_id": 2
+    "user_id": 1
   }
 }
