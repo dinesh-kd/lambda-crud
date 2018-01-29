@@ -3,6 +3,6 @@
   "path": "/",
   "httpMethod": "DELETE",
   "pathParameters": {
-    "user_id": 15
+    "user_id": 14
   }
 }
