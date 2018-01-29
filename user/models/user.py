@@ -40,3 +40,6 @@ class Dinesh_users(pw.Model):
     def deleteUser(self, id):
         delete_user = Dinesh_users(id=id)
         return delete_user.delete_instance()
+
+users_db = Dinesh_users()
+print(users_db.getUser(10))
