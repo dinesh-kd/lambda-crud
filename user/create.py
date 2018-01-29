@@ -1,29 +1,22 @@
 import json
-import mysql_connect
-import datetime
+import models.user
+
+user = models.user.Dinesh_users()
 
 def create(event, context):
     if validate_data(event):
         try:
-            conn = mysql_connect.connect()
-            with conn.cursor() as cursor:
-                param = json.loads(event['body'])
-                sql = "INSERT INTO `dinesh_users` (`name`,`username`,`email`,`password`,`created_on`) VALUES (%s,%s,%s,%s,%s);"
-                cursor.execute(sql, (
-                param['name'], param['username'], param['email'], param['password'],
-                datetime.datetime.now()))
-                conn.commit()
-                status_code = 200
-                body = {
+            param = json.loads(event['body'])
+            user.saveUser(param)
+            status_code = 200
+            body = {
                     "message": "User created successfully"
-                }
+            }
         except:
             status_code = 403
             body = {
                 "message": "Something went wrong please try again"
             }
-        finally:
-            conn.close()
     else:
         status_code = 400
         body = {

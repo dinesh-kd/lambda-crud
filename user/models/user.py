@@ -1,4 +1,5 @@
 import os, sys
+import datetime
 
 here = os.path.dirname(os.path.realpath(__file__))
 root = os.path.dirname(here)
@@ -25,3 +26,17 @@ class Dinesh_users(pw.Model):
         user = Dinesh_users.get(Dinesh_users.id == id)
         return {'id': user.id, 'name': user.name, 'username': user.username, 'email': user.email}
 
+    def saveUser(self, data):
+        new_user = Dinesh_users(name=data['name'], username=data['username'], email=data['email'], password=data['password'],
+                                created_on=datetime.datetime.now())
+        return new_user.save()
+
+    def updateUser(self, id, data):
+        updated_user = Dinesh_users(name=data['name'], username=data['username'], email=data['email'], password=data['password'],
+                                    updated_on=datetime.datetime.now())
+        updated_user.id = id
+        return updated_user.save()
+
+    def deleteUser(self, id):
+        delete_user = Dinesh_users(id=id)
+        return delete_user.delete_instance()
